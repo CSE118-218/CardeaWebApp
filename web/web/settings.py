@@ -25,7 +25,7 @@ SECRET_KEY = '016)cjvqh#d^ae4%6$#a0q*u-l8a$(ujmwpu89-+7f=qqf-@=%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-54-202-77-233.us-west-2.compute.amazonaws.com:8000', '0.0.0.0']
+ALLOWED_HOSTS = ['ec2-54-202-77-233.us-west-2.compute.amazonaws.com:8000', '0.0.0.0', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'Cardea',
     }
 }
 
@@ -116,7 +116,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+CSRF_COOKIE_SECURE = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 

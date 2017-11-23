@@ -7,17 +7,22 @@ from django.db import models
 
 
 class Patients(models.Model):
-    account = models.CharField(max_length=20, default="")
+    account = models.CharField(max_length=20, default="", primary_key=True)
     password = models.CharField(max_length=20, default="")
     name = models.CharField(max_length=40, default="")
     age = models.IntegerField(default=0)
-    pass
 
 
 class Activity(models.Model):
-    patientID = models.ForeignKey('Patients',on_delete=models.CASCADE, primary_key= True)
-    category = models.CharField(max_length=30, primary_key=True)
-    start_time = models.DateTimeField(auto_now=False, primary_key=True)
-    end_time = models.DateTimeField(auto_now=False)
-    duration = models.DateTimeField()
-    pass
+    account = models.OneToOneField(
+        Patients,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        default="",
+    )
+    running = models.FloatField(default=0.0)
+    sitting = models.FloatField(default=0.0)
+    standing = models.FloatField(default=0.0)
+    walking = models.FloatField(default=0.0)
+    lyingDown = models.FloatField(default=0.0)
+    # act = Activity(running=5.2, sitting=3.2, standing=4.2, walking=14.1, lyingDown=4.1, )

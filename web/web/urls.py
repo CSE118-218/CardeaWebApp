@@ -18,5 +18,5 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^poll/", include('patients.urls')),
+    url(r"^activity/", include('patients.urls')),
 ]
