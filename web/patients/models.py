@@ -26,3 +26,18 @@ class Activity(models.Model):
     walking = models.FloatField(default=0.0)
     lyingDown = models.FloatField(default=0.0)
     # act = Activity(running=5.2, sitting=3.2, standing=4.2, walking=14.1, lyingDown=4.1, )
+
+
+class Progress(models.Model):
+    account = models.OneToOneField(
+        Patients,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        default="",
+    )
+    running = models.FloatField(default=0.0)
+    sitting = models.FloatField(default=0.0)
+    standing = models.FloatField(default=0.0)
+    walking = models.FloatField(default=0.0)
+    lyingDown = models.FloatField(default=0.0)
+    # act = Activity(running=5.2, sitting=3.2, standing=4.2, walking=14.1, lyingDown=4.1, )
