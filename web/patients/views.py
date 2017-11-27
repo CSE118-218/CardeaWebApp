@@ -21,7 +21,7 @@ def goalActivity(request):
         try:
             userObj = get_object_or_404(Activity, pk=request.GET['user'])
             res = {}
-            res['user'] = userObj.account
+            res['user'] = request.GET['user']
             res['running'] = userObj.running
             res['sitting'] = userObj.sitting
             res['standing'] = userObj.standing
