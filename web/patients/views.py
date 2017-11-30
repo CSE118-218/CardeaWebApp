@@ -56,15 +56,26 @@ def goalActivity(request):
 def progressActivity(request):
     if request.method == 'GET':
         try:
-            userObj = get_object_or_404(Progress, pk=request.GET['user'])
-            res = {}
-            res['user'] = request.GET['user']
-            res['running'] = userObj.running
-            res['sitting'] = userObj.sitting
-            res['standing'] = userObj.standing
-            res['lyingDown'] = userObj.lyingDown
-            res['walking'] = userObj.walking
-            return JsonResponse(res)
+            response = []
+            userGoalObj = get_object_or_404(Activity, pk=request.GET['user'])
+            userProgressObj = get_object_or_404(Progress, pk=request.GET['user'])
+            resProgress = {}
+            resGoal = {}
+            resProgress['user'] = request.GET['user']
+            resProgress['running'] = userProgressObj.running
+            resProgress['sitting'] = userProgressObj.sitting
+            resProgress['standing'] = userProgressObj.standing
+            resProgress['lyingDown'] = userProgressObj.lyingDown
+            resProgress['walking'] = userProgressObj.walking
+            resGoal['user'] = request.GET['user']
+            resGoal['running'] = userGoalObj.running
+            resGoal['sitting'] = userGoalObj.sitting
+            resGoal['standing'] = userGoalObj.standing
+            resGoal['lyingDown'] = userGoalObj.lyingDown
+            resGoal['walking'] = userGoalObj.walking
+            response.append(resGoal)
+            response.append(resProgress)
+            return JsonResponse(response,safe=False)
         except MultiValueDictKeyError:
             return HttpResponse("no such key")
     if request.method == "POST":
