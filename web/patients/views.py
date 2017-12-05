@@ -75,7 +75,7 @@ def progressActivity(request):
             resGoal['walking'] = userGoalObj.walking
             response.append(resGoal)
             response.append(resProgress)
-            return JsonResponse(response,safe=False)
+            return JsonResponse(response, safe=False)
         except MultiValueDictKeyError:
             return HttpResponse("no such key")
     if request.method == "POST":
