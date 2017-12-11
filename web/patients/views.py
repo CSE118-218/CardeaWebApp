@@ -98,3 +98,14 @@ def progressActivity(request):
         except KeyError:
             return HttpResponseServerError("Malformed data!")
         return HttpResponse("Updated activity")
+
+
+@csrf_exempt
+def updateProgress(request):
+    if request.method == "POST":
+        json_data = json.loads(request.body)
+        try:
+           print json_data['pred']
+        except KeyError:
+            return HttpResponseServerError("Malformed data!")
+        return HttpResponse("Updated activity")
