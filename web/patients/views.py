@@ -103,9 +103,9 @@ def progressActivity(request):
 @csrf_exempt
 def updateProgress(request):
     if request.method == "POST":
-        json_data = json.loads(request.body)
+        json_data = request.body
         try:
-           print json_data['pred']
+           print json_data
         except KeyError:
             return HttpResponseServerError("Malformed data!")
         return HttpResponse("Updated activity")
