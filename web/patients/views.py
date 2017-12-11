@@ -104,8 +104,32 @@ def progressActivity(request):
 def updateProgress(request):
     if request.method == "POST":
         json_data = json.loads(request.body)
-        try:
-           print json_data
-        except KeyError:
-            return HttpResponseServerError("Malformed data!")
+        label = json_data['label_names']
+        pred = json_data['label_probs']
+        label_pred = zip(pred, label)
+        label_pred.sort(reverse=True)
+        print label_pred[:10]
+        label_set = [x[1] for x in label_pred[:10]]
+        userProgressObj = get_object_or_404(Progress, pk="admin")
+        if "Running" in label_set:
+            print "update running   ",
+            userProgressObj.running += 1
+
+        if "Walking" in label_set:
+            print "update walking   ",
+            userProgressObj.walking += 1
+
+        if "Lying down" in label_set:
+            print "update lying   ",
+            userProgressObj.lyingDown += 1
+
+        if "Sitting" in label_set:
+            print "update sitting   ",
+            userProgressObj.sitting += 1
+
+        if "Standing" in label_set:
+            print "update standing    ",
+            userProgressObj.standing += 1
+        userProgressObj.save()
+        print " "
         return HttpResponse("Updated activity")
