@@ -105,7 +105,7 @@ def updateProgress(request):
     if request.method == "POST":
         json_data = json.loads(request.body)
         try:
-           print json_data['pred']
+           print json_data
         except KeyError:
             return HttpResponseServerError("Malformed data!")
         return HttpResponse("Updated activity")
